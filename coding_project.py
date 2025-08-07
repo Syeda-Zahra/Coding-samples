@@ -6,29 +6,6 @@ from tkinter import ttk
 from PIL import Image, ExifTags, ImageTk
 from PIL.ExifTags import TAGS
 
-
-def repeatedString(s, n):
-    # Write your code here
-    print(s)
-    repeated_str = s
-    count_a = 0
-    left_overs = n % len(s)
-    times_repeat = n // len(s)
-    count_a_left_overs = 0
-    print(times_repeat)
-
-    for i in range(left_overs):
-        if s[i] == 'a':
-            count_a_left_overs += 1
-
-
-    for c in repeated_str:
-        if c == 'a':
-            count_a += 1
-
-    return count_a * times_repeat + count_a_left_overs
-
-
 def get_all_images(directory):
     image_name_lst = []
     for filename in os.listdir(directory):
@@ -135,30 +112,27 @@ def display_images_on_gui(gui_data):
 
 
 def main():
-    s='abc'
-    result = repeatedString(s, 10)
-    print(result)
-    # print("Please choose one of the following options:")
-    # user_input = input("1: sort by image name\n2: sort by image UserComment tag\n3: shuffle images\n>> ")
-    # function_dict = {'1': sort_images_by_name, '2': sort_images_by_user_input_tag, '3': shuffle_images}
-    #
-    # directory = "SampleImages"
-    #
-    # image_names_list = get_all_images(directory)
-    # image_meta_data = get_image_meta_data(image_names_list)
-    # if user_input == '1':
-    #     data = image_names_list
-    # elif user_input == '2':
-    #     data = image_meta_data
-    # elif user_input == '3':
-    #     data = image_names_list
-    # else:
-    #     print('Incorrect Input!')
-    #     exit(1)
-    #
-    # gui_data =function_dict[user_input](data)
-    #
-    # display_images_on_gui(gui_data)
+    print("Please choose one of the following options:")
+    user_input = input("1: sort by image name\n2: sort by image UserComment tag\n3: shuffle images\n>> ")
+    function_dict = {'1': sort_images_by_name, '2': sort_images_by_user_input_tag, '3': shuffle_images}
+    
+    directory = "SampleImages"
+    
+    image_names_list = get_all_images(directory)
+    image_meta_data = get_image_meta_data(image_names_list)
+    if user_input == '1':
+        data = image_names_list
+    elif user_input == '2':
+        data = image_meta_data
+    elif user_input == '3':
+        data = image_names_list
+    else:
+        print('Incorrect Input!')
+        exit(1)
+    
+    gui_data =function_dict[user_input](data)
+    
+    display_images_on_gui(gui_data)
 
 
 if __name__ == "__main__":
